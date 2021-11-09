@@ -1,0 +1,7 @@
+C:\xampp\htdocs\github\Fodboldklubben-FC\Fodboldklubben FC\bin\Debug\Fodboldklubben FC.exe.config
+C:\xampp\htdocs\github\Fodboldklubben-FC\Fodboldklubben FC\bin\Debug\Fodboldklubben FC.exe
+C:\xampp\htdocs\github\Fodboldklubben-FC\Fodboldklubben FC\bin\Debug\Fodboldklubben FC.pdb
+C:\xampp\htdocs\github\Fodboldklubben-FC\Fodboldklubben FC\obj\Debug\Fodboldklubben FC.csproj.AssemblyReference.cache
+C:\xampp\htdocs\github\Fodboldklubben-FC\Fodboldklubben FC\obj\Debug\Fodboldklubben FC.csproj.CoreCompileInputs.cache
+C:\xampp\htdocs\github\Fodboldklubben-FC\Fodboldklubben FC\obj\Debug\Fodboldklubben FC.exe
+C:\xampp\htdocs\github\Fodboldklubben-FC\Fodboldklubben FC\obj\Debug\Fodboldklubben FC.pdb
