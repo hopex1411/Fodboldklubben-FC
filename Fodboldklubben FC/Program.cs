@@ -22,14 +22,18 @@ namespace Fodboldklubben_FC
             string medlemJa = "ja";
             string medlemNej = "nej";
             string medlemSvar = "";
-            
 
 
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.BackgroundColor = ConsoleColor.Yellow;
             Console.WriteLine("FODBOLD KLUBBEN TEC");
+            Console.Clear();
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Blue;
+            Console.Clear();
 
             DateTime dateAndTime = DateTime.Now;
             Console.SetCursorPosition(110, 0);
