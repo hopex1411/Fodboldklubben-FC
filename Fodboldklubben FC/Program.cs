@@ -13,6 +13,7 @@ namespace Fodboldklubben_FC
         //Fodboldklubben TEC
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.GetEncoding(1252);
             int antalBørneBilletter=0;
             int antalVoksenBilletter=0;
             int børneBilletPris=30;
@@ -22,68 +23,87 @@ namespace Fodboldklubben_FC
             string medlemJa = "ja";
             string medlemNej = "nej";
             string medlemSvar = "";
+            double euroKurs = 0.13;
+            double euroSum;
+            double rabatSum;
 
-
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.BackgroundColor = ConsoleColor.Yellow;
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.BackgroundColor = ConsoleColor.Yellow;
             Console.WriteLine("FODBOLD KLUBBEN TEC");
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Blue;
-            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.White;
 
             DateTime dateAndTime = DateTime.Now;
             Console.SetCursorPosition(110, 0);
             Console.WriteLine(dateAndTime.ToString("dd/MM/yyyy"));
-
+            
             do
             {
-                Console.Write("Hvor mange børnebilletter vil du købe?: ");
+                Console.Write("\nHvor mange børnebilletter vil du købe?: ");
                 antalBørneBilletter = Convert.ToInt32(Console.ReadLine());
 
                 if (antalBørneBilletter > 10)
                 {
-                    Console.WriteLine("Du kan ikke bestille mere end 10 børnebilletter.");
+                    Console.WriteLine("\nDu kan ikke bestille mere end 10 børnebilletter.");
                     Console.WriteLine("");
                 }
             } while (antalBørneBilletter>10);
 
-            Console.WriteLine("Du har valgt {0} børnebilletter", antalBørneBilletter);
+            Console.WriteLine("\nDu har valgt {0} børnebilletter", antalBørneBilletter);
 
-            Console.Write("Hvor mange voksenbilletter vil du købe?: ");
+            Console.Write("\nHvor mange voksenbilletter vil du købe?: ");
             antalVoksenBilletter = Convert.ToInt32(Console.ReadLine());
 
 
-            //Skal loopes hvis antal er over 10
-            if (antalVoksenBilletter > 10)
+            do
             {
-                Console.WriteLine("Du kan ikke bestille mere end 10 voksenbilletter.");
-            }
+                if (antalVoksenBilletter > 10)
+                {
+                    Console.WriteLine("\nDu kan ikke bestille mere end 10 voksenbilletter.");
+                }
+            } while (antalVoksenBilletter > 10);
+            
 
-            Console.WriteLine("Du har valgt {0} voksenbilletter", antalVoksenBilletter);
+            Console.WriteLine("\nDu har valgt {0} voksenbilletter", antalVoksenBilletter);
 
-            Console.Write("Er du klubmedlem? (ja/nej): ");
+            Console.Write("\nEr du klubmedlem? (ja/nej): ");
             medlemSvar = Console.ReadLine();
 
-            switch (medlemSvar.ToLower())
-            {
-                case "ja":
-                    totalSum = ((antalBørneBilletter * børneBilletPris) + (antalVoksenBilletter * voksenBilletPris));
+                switch (medlemSvar.ToLower())
+                {
+                    case "ja":
 
-                    totalSum = totalSum - (totalSum * rabat / 100);
+                        Console.WriteLine("\nDu har bestilt et total af {0} billetter\n", antalBørneBilletter + antalVoksenBilletter);
+                        Console.WriteLine("Børnebilletter: {0}", antalBørneBilletter);
+                        Console.WriteLine("Voksenbilletter: {0}", antalVoksenBilletter);
 
-                    Console.Write("Den totale sum er: " + totalSum);
-                    break;
+                        totalSum = ((antalBørneBilletter * børneBilletPris) + (antalVoksenBilletter * voksenBilletPris));
+                        totalSum = totalSum - (totalSum * rabat / 100);
 
-                case "nej":
-                    totalSum = (antalBørneBilletter * børneBilletPris) + (antalVoksenBilletter*voksenBilletPris);
-                    Console.Write("Den totale sum er: " + totalSum);
+                        euroSum = totalSum * euroKurs;
+                        euroSum = Math.Round(euroSum);
 
-                    break;
-            }
+                    rabatSum = (((antalBørneBilletter * børneBilletPris) + (antalVoksenBilletter * voksenBilletPris))- totalSum);
+                    Console.WriteLine("\nMed klubmedlem rabat spare du {0} DKK", rabatSum);
+                    Console.WriteLine("\nDen totale pris er {0} DKK/ \u20AC{1:N2}", totalSum, euroSum);
+                        break;
+
+                    case "nej":
+
+                        totalSum = (antalBørneBilletter * børneBilletPris) + (antalVoksenBilletter * voksenBilletPris);
+
+                        euroSum = totalSum * euroKurs;
+                        euroSum = Math.Round(euroSum);
+
+                        Console.WriteLine("\nDen totale pris er {0} DKK/ \u20AC{1:N2}", totalSum, euroSum);
+                        break;
+
+                    default:
+                        Console.WriteLine("{0} er ikke en korrekt mulighed", medlemSvar);
+                        break;
+                }
+            
 
 
             Console.ReadKey();
