@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,21 +15,24 @@ namespace Fodboldklubben_FC
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.GetEncoding(1252);
-            int antalBørneBilletter = 0;
-            int antalVoksenBilletter = 0;
+            int antalBørneBilletter;
+            int antalVoksenBilletter;
             int børneBilletPris = 30;
             int voksenBilletPris = 65;
             int rabat = 10;
             string titel = "FODBOLD KLUBBEN TEC";
-            string medlemSvar = "";
+            string medlemSvar;
+            string path = @"C:\xampp\htdocs\github\Fodboldklubben-FC\Fodboldklubben FC\fodbold.txt";
             double totalSum;
             double euroKurs = 0.13;
             double euroSum;
             double rabatSum;
 
+           //
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.Clear();
             Console.BackgroundColor = ConsoleColor.Yellow;
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.Clear();
             Console.WriteLine(titel);
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.ForegroundColor = ConsoleColor.White;
@@ -37,6 +41,14 @@ namespace Fodboldklubben_FC
             Console.SetCursorPosition(110, 0);
             Console.WriteLine(dateAndTime.ToString("dd/MM/yyyy"));
 
+            string[] readText = File.ReadAllLines(path);
+            Console.SetCursorPosition(0, 2);
+            foreach (string antalPladser in readText)
+            {
+                Console.WriteLine("Der er {0} ledige pladser", antalPladser);
+            }
+            
+
             do
             {
                 Console.Write("\nHvor mange børnebilletter vil du købe?: ");
@@ -44,7 +56,7 @@ namespace Fodboldklubben_FC
 
                 if (antalBørneBilletter > 10)
                 {
-                    Console.WriteLine("\nDu kan ikke bestille mere end 10 børnebilletter.");
+                    Console.WriteLine("\nDu kan ikke bestille mere end 10 børnebillet(ter)");
                     Console.WriteLine("");
                 }
             } while (antalBørneBilletter > 10);
@@ -59,12 +71,14 @@ namespace Fodboldklubben_FC
             {
                 if (antalVoksenBilletter > 10)
                 {
-                    Console.WriteLine("\nDu kan ikke bestille mere end 10 voksenbilletter.");
+                    Console.WriteLine("\nDu kan ikke bestille mere end 10 voksenbilletter");
                 }
             } while (antalVoksenBilletter > 10);
 
 
-            Console.WriteLine("\nDu har valgt {0} voksenbilletter", antalVoksenBilletter);
+            Console.WriteLine("\nDu har valgt {0} voksenbillet(ter)", antalVoksenBilletter);
+
+
 
             Console.Write("\nEr du klubmedlem? (ja/nej): ");
             medlemSvar = Console.ReadLine();
@@ -73,7 +87,7 @@ namespace Fodboldklubben_FC
             {
                 case "ja":
 
-                    Console.WriteLine("\nDu har bestilt et total af {0} billetter\n", antalBørneBilletter + antalVoksenBilletter);
+                    Console.WriteLine("\nDu har bestilt et total af {0} billet(ter)\n", antalBørneBilletter + antalVoksenBilletter);
                     Console.WriteLine("Børnebilletter: {0}", antalBørneBilletter);
                     Console.WriteLine("Voksenbilletter: {0}", antalVoksenBilletter);
 
@@ -81,7 +95,7 @@ namespace Fodboldklubben_FC
                     totalSum = totalSum - (totalSum * rabat / 100);
 
                     euroSum = totalSum * euroKurs;
-                    euroSum = Math.Round(euroSum);
+                    euroSum = Math.Ceiling(euroSum);
 
                     rabatSum = (((antalBørneBilletter * børneBilletPris) + (antalVoksenBilletter * voksenBilletPris)) - totalSum);
                     Console.WriteLine("\nMed klubmedlem rabat spare du {0} DKK", rabatSum);
@@ -95,7 +109,7 @@ namespace Fodboldklubben_FC
                     euroSum = totalSum * euroKurs;
                     euroSum = Math.Round(euroSum);
 
-                    Console.WriteLine("\nDen totale pris er {0} DKK/ \u20AC{1:N2}", totalSum, euroSum);
+                    Console.WriteLine("\nDen totale pris er {0} DKK/ \u20AC{1}", totalSum, euroSum);
                     break;
 
                 default:
