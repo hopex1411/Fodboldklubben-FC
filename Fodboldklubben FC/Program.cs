@@ -29,25 +29,28 @@ namespace Fodboldklubben_FC
             double euroSum;
             double rabatSum;
 
-            //
+            //Ændre baggrundsfarve og tekstfarve
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.Clear();
             Console.BackgroundColor = ConsoleColor.Yellow;
             Console.ForegroundColor = ConsoleColor.Red;
+            //Udskriver overskift/titel og ændre farverne igen
             Console.WriteLine(titel);
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.ForegroundColor = ConsoleColor.White;
 
+            //Udskriver maskinen's dato
             DateTime dateAndTime = DateTime.Now;
             Console.SetCursorPosition(110, 0);
             Console.WriteLine(dateAndTime.ToString("dd/MM/yyyy"));
 
-            Console.SetCursorPosition(0, 2);
 
+            //Udskriver det antal pladser der står i tekstdokumentet "fodbold.txt"
+            Console.SetCursorPosition(0, 2);
             System.Console.WriteLine("\nAntal ledige pladser: {0}", seatsInt);
             Console.WriteLine();
 
-
+            //
             do
             {
                 Console.Write("\nHvor mange børnebilletter vil du købe?: ");
@@ -62,9 +65,7 @@ namespace Fodboldklubben_FC
 
             Console.WriteLine("\nDu har valgt {0} børnebilletter", antalBørneBilletter);
 
-
-
-
+            //
             do
             {
                 Console.Write("\nHvor mange voksenbilletter vil du købe?: ");
@@ -79,53 +80,63 @@ namespace Fodboldklubben_FC
 
             Console.WriteLine("\nDu har valgt {0} voksenbillet(ter)", antalVoksenBilletter);
 
-
+            //
             seatsInt = seatsInt - (antalBørneBilletter + antalVoksenBilletter);
             seats = Convert.ToString(seatsInt);
             File.WriteAllText(@"C:\xampp\htdocs\github\Fodboldklubben-FC\Fodboldklubben FC\fodbold.txt", seats);
 
-            System.Console.WriteLine("\nAntal ledige pladser: {0}", seatsInt);
-            Console.WriteLine();
 
-
+            //
             Console.Write("\nEr du klubmedlem? (ja/nej): ");
             medlemSvar = Console.ReadLine();
 
+            //
             switch (medlemSvar.ToLower())
             {
+                //
                 case "ja":
 
                     Console.WriteLine("\nDu har bestilt et total af {0} billet(ter)\n", antalBørneBilletter + antalVoksenBilletter);
                     Console.WriteLine("Børnebilletter: {0}", antalBørneBilletter);
                     Console.WriteLine("Voksenbilletter: {0}", antalVoksenBilletter);
 
+                    //
                     totalSum = ((antalBørneBilletter * børneBilletPris) + (antalVoksenBilletter * voksenBilletPris));
                     totalSum = totalSum - (totalSum * rabat / 100);
 
+                    //
                     euroSum = totalSum * euroKurs;
                     euroSum = Math.Ceiling(euroSum);
 
+                    //
                     rabatSum = (((antalBørneBilletter * børneBilletPris) + (antalVoksenBilletter * voksenBilletPris)) - totalSum);
+                   
                     Console.WriteLine("\nMed klubmedlem rabat spare du {0} DKK", rabatSum);
-                    Console.WriteLine("\nDen totale pris er {0} DKK/ \u20AC{1:N2}", totalSum, euroSum);
+                    Console.WriteLine("\nDen totale pris er {0} DKK/ \u20AC{1}", totalSum, euroSum);
                     break;
 
+                //
                 case "nej":
+                    Console.WriteLine("\nDu har bestilt et total af {0} billet(ter)\n", antalBørneBilletter + antalVoksenBilletter);
+                    Console.WriteLine("Børnebilletter: {0}", antalBørneBilletter);
+                    Console.WriteLine("Voksenbilletter: {0}", antalVoksenBilletter);
 
+                    //
                     totalSum = (antalBørneBilletter * børneBilletPris) + (antalVoksenBilletter * voksenBilletPris);
 
+                    //
                     euroSum = totalSum * euroKurs;
                     euroSum = Math.Round(euroSum);
 
                     Console.WriteLine("\nDen totale pris er {0} DKK/ \u20AC{1}", totalSum, euroSum);
                     break;
 
+                //
                 default:
                     Console.WriteLine("{0} er ikke en korrekt mulighed", medlemSvar);
                     break;
             }
-
-
+            Console.WriteLine("\nAntal ledige pladser: {0}", seatsInt);
 
             Console.ReadKey();
         }
