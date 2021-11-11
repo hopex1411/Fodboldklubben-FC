@@ -136,6 +136,7 @@ namespace Fodboldklubben_FC
                     Console.WriteLine("{0} er ikke en korrekt mulighed", medlemSvar);
                     break;
             }
+            Console.ReadKey();
         }
     }
 }
