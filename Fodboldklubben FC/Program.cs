@@ -11,7 +11,7 @@ namespace Fodboldklubben_FC
     {
         //Ada - D82
         //20210911
-        //Fodboldklubben TEC
+        //Obligatorisk Opgave - Fodboldklubben TEC
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.GetEncoding(1252);
@@ -29,6 +29,7 @@ namespace Fodboldklubben_FC
             double euroSum;
             double rabatSum;
 
+            Console.SetWindowSize(121, 35);
 
                 //Ændre baggrundsfarve og tekstfarve
                 Console.BackgroundColor = ConsoleColor.Blue;
@@ -46,12 +47,12 @@ namespace Fodboldklubben_FC
             Console.SetCursorPosition(110, 0);
             Console.WriteLine(dateAndTime.ToString("dd/MM/yyyy"));
 
-            
-                //Udskriver det antal pladser der står i tekstdokumentet "fodbold.txt"
-                Console.WriteLine("\nAntal ledige pladser: {0}", seatsInt);
+
+            //Udskriver det antal pladser der står i tekstdokumentet "fodbold.txt"
+            Console.WriteLine("\nAntal ledige pladser: {0}", seatsInt);
 
             do
-            {
+            {Console.SetCursorPosition(110, 4);
                 Console.Write("\nIndtast hvor mange børnebilletter vil du købe?: ");
                 antalBørneBilletter = Convert.ToInt32(Console.ReadLine());
 
