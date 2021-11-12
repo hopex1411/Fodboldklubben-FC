@@ -31,8 +31,8 @@ namespace Fodboldklubben_FC
 
             Console.SetWindowSize(121, 35);
 
-                //Ændre baggrundsfarve og tekstfarve
-                Console.BackgroundColor = ConsoleColor.Blue;
+            //Ændre baggrundsfarve og tekstfarve
+            Console.BackgroundColor = ConsoleColor.Blue;
             Console.Clear();
             Console.BackgroundColor = ConsoleColor.Yellow;
             Console.ForegroundColor = ConsoleColor.Red;
@@ -49,22 +49,21 @@ namespace Fodboldklubben_FC
 
 
             //Udskriver det antal pladser der står i tekstdokumentet "fodbold.txt"
-            Console.WriteLine("\nAntal ledige pladser: {0}", seatsInt);
+            Console.WriteLine("Antal ledige pladser: {0}", seatsInt);
 
-            do
-            {Console.SetCursorPosition(110, 4);
-                Console.Write("\nIndtast hvor mange børnebilletter vil du købe?: ");
+            do {
+                Console.Write("Indtast hvor mange børnebilletter vil du købe?: ");
                 antalBørneBilletter = Convert.ToInt32(Console.ReadLine());
 
                 //Tjekker om antallet billetter er større end 10
                 if (antalBørneBilletter > 10)
                 {
-                    Console.WriteLine("\nDu kan ikke bestille mere end 10 børnebillet(ter)");
+                    Console.WriteLine("Du kan ikke bestille mere end 10 børnebillet(ter)");
                     Console.WriteLine("");
                 }
             } while (antalBørneBilletter > 10);
 
-            Console.WriteLine("\nDu har valgt {0} børnebilletter", antalBørneBilletter);
+            Console.WriteLine("Du har valgt {0} børnebillet(ter)", antalBørneBilletter);
 
             do
             {
@@ -74,13 +73,12 @@ namespace Fodboldklubben_FC
                 //Tjekker om antallet billetter er større end 10
                 if (antalVoksenBilletter > 10)
                 {
-                    Console.WriteLine("\nDu kan ikke bestille mere end 10 voksenbilletter");
+                    Console.WriteLine("Du kan ikke bestille mere end 10 voksenbilletter");
                     Console.WriteLine("");
                 }
             } while (antalVoksenBilletter > 10);
 
-
-            Console.WriteLine("\nDu har valgt {0} voksenbillet(ter)", antalVoksenBilletter);
+            Console.WriteLine("Du har valgt {0} voksenbillet(ter)", antalVoksenBilletter);
 
             //Regner antallet af valgte billetter og trækker dem fra antal pladser og opdatere dokumentet
             seatsInt = seatsInt - (antalBørneBilletter + antalVoksenBilletter);
@@ -137,6 +135,9 @@ namespace Fodboldklubben_FC
                     Console.WriteLine("{0} er ikke en korrekt mulighed", medlemSvar);
                     break;
             }
+            //Udskriver det antal pladser der står i tekstdokumentet "fodbold.txt"
+            Console.SetCursorPosition(52, 2);
+            Console.WriteLine("Antal ledige pladser: {0}", seatsInt);
             Console.ReadKey();
         }
     }
