@@ -136,7 +136,7 @@ namespace Fodboldklubben_FC
                     break;
             }
             //Udskriver det antal pladser der står i tekstdokumentet "fodbold.txt"
-            Console.SetCursorPosition(52, 2);
+            Console.SetCursorPosition(0, 1);
             Console.WriteLine("Antal ledige pladser: {0}", seatsInt);
             Console.ReadKey();
         }
